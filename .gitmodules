@@ -1,0 +1,10 @@
+[submodule "control"]
+	path = control
+	url = https://github.com/AquaRobo/control.git
+[submodule "gui"]
+	path = gui
+	url = https://github.com/AquaRobo/gui.git
+[submodule "cv"]
+	path = cv
+	url = https://github.com/AquaRobo/cv.git
+
