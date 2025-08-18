@@ -16,7 +16,7 @@ ASV/
 ### Clone the Repository with Submodule
 Run the following command to ensure the control submodules are properly initialized:
 ```bash
-git clone --recurse-submodules https://github.com/AquaRono/ASV.git
+git clone --recurse-submodules https://github.com/AquaRobo/ASV.git
 ```
 If you already cloned the repo but forgot the submodules, run:
 ```bash
