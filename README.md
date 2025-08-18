@@ -4,13 +4,13 @@ ASV is the complete system of autonomous vehicle that cleans oceans from debris.
 ## Project Structure 
 ```
 ASV/
-│── control/          # Control side on Pi (Git submodule)
-│── cv/               # Computer vision models (Git submodule)
-│── gui/              # GUI (Git submodule)
-│── .gitmodules       # Defines the robot submodule
-│── .gitignore        # Ignored files
-│── requirments.sh    # Required dependencies of the system
-│── README.md         # This file
+│── controlASV/          # Control side on Pi (Git submodule)
+│── cvASV/               # Computer vision models (Git submodule)
+│── guiASV/              # GUI (Git submodule)
+│── .gitmodules          # Defines the robot submodule
+│── .gitignore           # Ignored files
+│── requirments.sh       # Required dependencies of the system
+│── README.md            # This file
 ```
 ## Setting Up the Project
 ### Clone the Repository with Submodule
