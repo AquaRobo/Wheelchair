@@ -1,10 +1,10 @@
-[submodule "controlASV"]
-	path = controlASV
-	url = https://github.com/AquaRobo/controlASV.git
-[submodule "guiASV"]
-	path = guiASV
-	url = https://github.com/AquaRobo/guiASV.git
-[submodule "cvASV"]
-	path = cvASV
-	url = https://github.com/AquaRobo/cvASV.git
+[submodule "controlWheelchair"]
+	path = controlWheelchair
+	url = https://github.com/AquaRobo/controlWheelchair.git
+[submodule "guiWheelchair"]
+	path = guiWheelchair
+	url = https://github.com/AquaRobo/guiWheelchair.git
+[submodule "cvWheelchair"]
+	path = cvWheelchair
+	url = https://github.com/AquaRobo/cvWheelchair.git
 
