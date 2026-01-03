@@ -1,0 +1,11 @@
+opencv-python 
+numpy 
+pyyaml
+zope.interface
+simple-pid
+ultralytics
+librosa
+sounddevice
+soundfile
+openai-whisper
+pyshine
