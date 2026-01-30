@@ -10,7 +10,7 @@ SPIHandler::SPIHandler(size_t BUFFER_SIZE = 8, size_t QUEUE_SIZE = 1){
 void SPIHandler::initialize(){
     this->slave.setDataMode(0); // Understand SPI modes --> SPI_MODE0
     this->slave.setQueueSize(this->QUEUE_SIZE);
-    this->slave.begin(VSPI);
+    this->slave.begin(HSPI);
 }
 
 void SPIHandler::initializeBuffers(uint8_t *tx, uint8_t *rx, size_t size, size_t offset){
