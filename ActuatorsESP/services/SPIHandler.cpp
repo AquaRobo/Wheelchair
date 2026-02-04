@@ -1,6 +1,6 @@
 #include "../headers/SPIHandler.h"
 
-SPIHandler::SPIHandler(size_t BUFFER_SIZE = 8, size_t QUEUE_SIZE = 1){
+SPIHandler::SPIHandler(size_t BUFFER_SIZE, size_t QUEUE_SIZE){
     this->BUFFER_SIZE = BUFFER_SIZE;
     this->QUEUE_SIZE = QUEUE_SIZE;
     this->tx_buf = new uint8_t[BUFFER_SIZE];

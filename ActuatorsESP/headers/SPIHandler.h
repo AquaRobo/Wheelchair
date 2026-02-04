@@ -13,7 +13,7 @@
 
 class SPIHandler: public ICommHandler {
     public:
-        SPIHandler(size_t BUFFER_SIZE, size_t QUEUE_SIZE);                                    
+        SPIHandler(size_t BUFFER_SIZE = 8, size_t QUEUE_SIZE = 1);                                    
         void initialize() override;                 
         void send(const std::vector<uint8_t>& data) override;  // Insert the data type required to be sent
         std::vector<uint8_t> receive() override;    // Update the return type of the data received
