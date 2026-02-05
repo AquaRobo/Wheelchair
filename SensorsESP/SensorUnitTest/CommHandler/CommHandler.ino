@@ -2,7 +2,7 @@
 #include "../../services/SPIHandler.cpp"
 #include <stdlib.h>
 
-SPIHandler spi_handler(28, 1); // adjust the buffer size according to the size of the data being sent
+SPIHandler spi_handler(12, 1); // adjust the buffer size according to the size of the data being sent
 std::vector<uint8_t> imu_data;
 std::vector<uint8_t> all_data;
 float roll, yaw, pitch;
@@ -25,6 +25,9 @@ void serializeFloatArray(std::vector<uint8_t> &buffer, float *array, size_t size
 void loop(){
     imu_data.clear();
     all_data.clear();
+    roll = 5.5;
+    pitch = 6.5;
+    yaw = 7.5;
 
     float imu_values[3] = {roll, pitch, yaw};
     serializeFloatArray(imu_data, imu_values, 4);

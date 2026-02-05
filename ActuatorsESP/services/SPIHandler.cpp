@@ -1,4 +1,5 @@
 #include "../headers/SPIHandler.h"
+#include <iostream>
 
 SPIHandler::SPIHandler(size_t BUFFER_SIZE, size_t QUEUE_SIZE){
     this->BUFFER_SIZE = BUFFER_SIZE;
@@ -26,13 +27,12 @@ void SPIHandler::send(const std::vector<uint8_t>& data){
         this->tx_buf[i] = data[i];
     }
     this->slave.transfer(this->tx_buf, this->rx_buf, this->BUFFER_SIZE);
-    memset(this->tx_buf, 0, this->BUFFER_SIZE);
-    
 }
 
 std::vector<uint8_t> SPIHandler::receive(){
     // Fill tx buffer with dummy data
     this->initializeBuffers(this->tx_buf, this->rx_buf, this->BUFFER_SIZE);
+    this->received_data.clear();
     this->received_bytes = this->slave.transfer(this->tx_buf, this->rx_buf, this->BUFFER_SIZE);
     // Convert received bytes to readable format aka vector
     this->received_data.reserve(this->received_bytes);

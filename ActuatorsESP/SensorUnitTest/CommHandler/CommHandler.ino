@@ -14,18 +14,16 @@ void setup(){
 void loop(){
     all_data.clear();
     all_data = spi_handler.receive();
-    if (all_data.size() >= 9){  
-        char cmd = all_data[0];
+    char cmd = all_data[0];
 
-        float v1, v2;
-        memcpy(&v1, &all_data[1], 4);
-        memcpy(&v2, &all_data[5], 4);
+    float v1, v2;
+    memcpy(&v1, &all_data[1], 4);
+    memcpy(&v2, &all_data[5], 4);
 
-        Serial.print("CMD: ");
-        Serial.println(cmd);
-        Serial.print("V1: ");
-        Serial.println(v1);
-        Serial.print("V2: ");
-        Serial.println(v2);
-    }
+    Serial.print("CMD: ");
+    Serial.println(cmd);
+    Serial.print("V1: ");
+    Serial.println(v1);
+    Serial.print("V2: ");
+    Serial.println(v2);
 }
