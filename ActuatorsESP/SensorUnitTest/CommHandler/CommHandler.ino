@@ -2,7 +2,7 @@
 #include "../../services/SPIHandler.cpp"
 #include <stdlib.h>
 
-SPIHandler spi_handler(20, 1); // adjust the buffer size according to the size of the data being sent
+SPIHandler spi_handler(20, 5); // adjust the buffer size according to the size of the data being sent
 std::vector<uint8_t> all_data;
 
 void setup(){
@@ -14,8 +14,13 @@ void setup(){
 void loop(){
     all_data.clear();
     all_data = spi_handler.receive();
-    char cmd = all_data[0];
 
+    if (all_data.size() < 9) {  // need at least 1 (cmd) + 4 (v1) + 4 (v2)
+        Serial.println("Not enough data received, skipping...");
+        return;
+    }
+
+    char cmd = all_data[0];
     float v1, v2;
     memcpy(&v1, &all_data[1], 4);
     memcpy(&v2, &all_data[5], 4);
