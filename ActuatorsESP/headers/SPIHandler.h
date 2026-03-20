@@ -8,6 +8,7 @@
 #include <cstddef>
 #include <cstring>
 #include <string.h>
+#include <mutex>
 #include "Commhandler.h"
 // #include "ESP32SPISlaveMock.h"
 
@@ -17,13 +18,18 @@ class SPIHandler: public ICommHandler {
         void initialize() override;                 
         void send(const std::vector<uint8_t>& data) override;  // Insert the data type required to be sent
         std::vector<uint8_t> receive() override;    // Update the return type of the data received
+        void fillTXBuffer(const uint8_t* data, size_t size);
+        size_t transferBuffers();
+        std::vector<uint8_t> getRXData();
         void close() override;
     private:
         ESP32SPISlave slave;
         size_t BUFFER_SIZE;
         size_t QUEUE_SIZE;
-        uint8_t *tx_buf;
-        uint8_t *rx_buf;
+        uint8_t* tx_buf_active;
+        uint8_t* tx_buf_ready;
+        uint8_t* rx_buf;
+        std::mutex buffer_mutex;
         size_t received_bytes = 0;
         std::vector<uint8_t> received_data;
         void initializeBuffers(uint8_t *tx, uint8_t *rx, size_t size, size_t offset = 0);      
