@@ -1,24 +1,36 @@
 #include "../../headers/SPIHandler.h"
 #include "../../services/SPIHandler.cpp"
 #include <stdlib.h>
-#include <math.h>
+// #include <math.h>
 
-SPIHandler spi_handler(32, 4); // adjust the buffer size according to the size of the data being sent
-float roll, yaw, pitch;
+SPIHandler spi_handler(40, 4); // adjust the buffer size according to the size of the data being sent
+float roll, pitch, yaw;
+float orientation_x, orientation_y, orientation_z, orientation_w;
+float linear_acc_x, linear_acc_y, linear_acc_z;
+float angular_vel_x, angular_vel_y, angular_vel_z;
 char cmd;
 float v1, v2, v3;
 
 void sensorTask(void* arg) {
     while (true) {
-        static float t = 0;
+        // static float t = 0;
+        // roll  = 30.0f * sinf(t);
+        // pitch = 20.0f * sinf(t * 0.5f);
+        // yaw   = 180.0f * sinf(t * 0.2f);
+        // t += 0.05f;
+        orientation_x = 0.707f; // example quaternion values for a 90-degree rotation around the Z-axis
+        orientation_y = 0.0f;
+        orientation_z = 0.707f;
+        orientation_w = 0.0f;
+        linear_acc_x = 0.0f; // example linear acceleration values
+        linear_acc_y = 0.0f;
+        linear_acc_z = 9.81f; // gravity
+        angular_vel_x = 1.0f; // example angular velocity values
+        angular_vel_y = 0.0f;
+        angular_vel_z = 0.0f;
 
-        roll  = 30.0f * sinf(t);
-        pitch = 20.0f * sinf(t * 0.5f);
-        yaw   = 180.0f * sinf(t * 0.2f);
-
-        t += 0.05f;
-
-        float imu_values[3] = {roll, pitch, yaw};
+        // float imu_values[3] = {roll, pitch, yaw};
+        float imu_values[10] = {orientation_x, orientation_y, orientation_z, orientation_w, linear_acc_x, linear_acc_y, linear_acc_z, angular_vel_x, angular_vel_y, angular_vel_z};
         uint8_t imu_payload[sizeof(imu_values)];
         memcpy(imu_payload, imu_values, sizeof(imu_values));
         spi_handler.fillTXBuffer(imu_payload, sizeof(imu_payload));
