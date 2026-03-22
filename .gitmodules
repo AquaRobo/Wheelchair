@@ -10,9 +10,6 @@
 [submodule "Robotic-arm"]
 	path = Robotic-arm
 	url = https://github.com/AquaRobo/Robotic-arm.git
-[submodule "ActuatorsESP"]
-	path = ActuatorsESP
-	url = https://github.com/AquaRobo/ActuatorsESP.git
-[submodule "SensorsESP"]
-	path = SensorsESP
-	url = https://github.com/AquaRobo/SensorsESP.git
+[submodule "ESP"]
+	path = ESP
+	url = https://github.com/AquaRobo/ESP.git
