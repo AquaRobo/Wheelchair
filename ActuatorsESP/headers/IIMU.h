@@ -10,7 +10,7 @@ public:
     virtual std::vector<float> getMagnetometerData() = 0;
     virtual std::vector<float> getAccelerometerData() = 0;
     virtual std::vector<float> getQuaternion() = 0;
-    virtual std::vector<float> getEulerAngles() = 0;
+    virtual std::vector<float> getEulerAngles(bool degrees = false) = 0;
     virtual void calibrate() = 0;
     virtual ~IIMU() {}
 };
