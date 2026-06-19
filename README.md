@@ -4,9 +4,8 @@ SAWRA is a voice activated wheelchair that navigates autonomously to various roo
 ## Project Structure 
 ```
 SAWRA/
-│── controlWheelchair/          # Control side on micro-processor (Git submodule)
-│── ComputerVision/             # Computer vision models (Git submodule)
-│── wheelchair_speech/          # ML modules (Git submodule)
+│── controlWheelchair/          # Control side on micro-computer    (Git submodule)
+│── ESP/                        # Control side on micro-controller  (Git submodule)
 │── .gitmodules                 # Defines the robot submodule
 │── .gitignore                  # Ignored files
 │── requirments.txt             # Required dependencies of the system

@@ -73,12 +73,15 @@ AccelStepper* steppers[] = {
 
 
 
+
 // -------------------------------------------------------
 // Globals
 // -------------------------------------------------------
 char cmd;
 float v1, v2;
+int32_t prevSteps[6] = {0, 0, 0, 0, 0, 0};
 
+SemaphoreHandle_t stepsMutex;
 // -------------------------------------------------------
 //sensors
 //--------------------------------------------------------
@@ -150,7 +153,11 @@ void actuatorTask(void* arg) {
                 memcpy(&newSteps[3], &actuators[16], 4);
                 memcpy(&newSteps[4], &actuators[20], 4);
                 memcpy(&newSteps[5], &actuators[24], 4);
+                Serial.printf("Targets → M1:%d M2:%d M3:%d M4:%d M5:%d M6:%d\n",
+                newSteps[0], newSteps[1], newSteps[2],
+                newSteps[3], newSteps[4], newSteps[5]);
 
+<<<<<<< HEAD
                 if (newSteps[0] != prevSteps[0]) {
                     motorRotation.moveTo(newSteps[0]);
                     prevSteps[0] = newSteps[0];
@@ -186,6 +193,70 @@ void actuatorTask(void* arg) {
                 }           
             }
         }
+=======
+                // update and run each stepper to its new target
+              // if (xSemaphoreTake(stepsMutex, portMAX_DELAY)) {
+                // if (newSteps[0] != prevSteps[0]) {
+                    // motorRotation.move((newSteps[0]-prevSteps[0])*2);
+                    // motorRotation.runToPosition();
+                    // prevSteps[0] = newSteps[0];
+                // }
+                // if (newSteps[1] != prevSteps[1]) {
+                    // motorShoulderR.moveTo( (newSteps[1]-prevSteps[1])*5);
+                    // motorShoulderL.moveTo(-(newSteps[1]-prevSteps[1])*5);
+                    // motorShoulderR.runToPosition();
+                    // motorShoulderL.runToPosition();
+                    // prevSteps[1] = newSteps[1];
+                    
+                // }
+                // if (newSteps[2] != prevSteps[2]) {
+                    motorGeared.move((newSteps[2]-prevSteps[2])*12);
+                    prevSteps[2] = newSteps[2];
+                    motorGeared.runToPosition();
+                // }
+                // if (newSteps[3] != prevSteps[3]) {
+                    motorForearm.move((newSteps[3]-prevSteps[3])*2);
+                    prevSteps[3] = newSteps[3];
+                    motorForearm.runToPosition();
+                // }
+                // if (newSteps[4] != prevSteps[4]) {
+                    motorWrist.move((newSteps[4]-prevSteps[4])*0.5);
+                    prevSteps[4] = newSteps[4];
+                    motorWrist.runToPosition();
+
+
+                    motorShoulderR.moveTo((newSteps[1]-prevSteps[1])*5);
+                    motorShoulderL.moveTo(-(newSteps[1]-prevSteps[1])*5);
+
+                    while (motorShoulderR.distanceToGo() != 0 ||
+                          motorShoulderL.distanceToGo() != 0)
+                    {
+                      motorShoulderR.run();
+                      motorShoulderL.run();
+                    }
+                // }
+                  // xSemaphoreGive(stepsMutex);
+              // }
+
+
+                // motorRotation.run();
+                // motorShoulderR.run();
+                // motorShoulderL.run();
+                // motorGeared.run();
+                // motorForearm.run();
+                // motorWrist.run();
+            
+
+
+            }
+        }
+
+        // --- Keep Steppers Running Toward Target ---
+        // must be called continuously regardless of new data
+        
+
+        vTaskDelay(1);
+>>>>>>> 9db2e87 (steppers_final)
     }
 }
 
@@ -203,6 +274,16 @@ void setup() {
     motorShoulderL.setMaxSpeed(SPEED_STANDARD);
     motorShoulderL.setAcceleration(ACCEL_STANDARD);
 
+<<<<<<< HEAD
+=======
+    // configure each stepper
+    motorShoulderR.setMaxSpeed(SPEED_STANDARD);
+    motorShoulderR.setAcceleration(ACCEL_STANDARD);
+
+    motorShoulderL.setMaxSpeed(SPEED_STANDARD);
+    motorShoulderL.setAcceleration(ACCEL_STANDARD);
+
+>>>>>>> 9db2e87 (steppers_final)
     motorGeared.setMaxSpeed(SPEED_STANDARD);
     motorGeared.setAcceleration(ACCEL_STANDARD);
 

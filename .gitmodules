@@ -1,15 +1,6 @@
 [submodule "controlWheelchair"]
 	path = controlWheelchair
 	url = https://github.com/AquaRobo/controlWheelchair.git
-[submodule "ComputerVision"]
-	path = ComputerVision
-	url = https://github.com/AquaRobo/ComputerVision.git
-[submodule "wheelchair_speech"]
-	path = wheelchair_speech
-	url = https://github.com/AquaRobo/wheelchair_speech.git
-[submodule "Robotic-arm"]
-	path = Robotic-arm
-	url = https://github.com/AquaRobo/Robotic-arm.git
 [submodule "ESP"]
 	path = ESP
 	url = https://github.com/AquaRobo/ESP.git
